@@ -6,22 +6,19 @@
 #define BASEGAME_API __declspec(dllimport)
 #endif
 
-#include <GLFW/glfw3.h>
+#include "Window.h"
+#include "Renderer.h"
 
-class BASEGAME_API BaseGame
+class /*BASEGAME_API*/ BaseGame
 {
 private:
-	GLFWwindow* window;
+	Window* window;
+	Renderer* render;
 
 public:
 	BaseGame();
 	~BaseGame();
-	bool InIt();
-	void CreateWindow(int width, int height, const char* title);
-	bool WindowShouldClose();
-	void Render();
-	void SwapBuffers();
-	void Events();
-	virtual void Run();
+
+	void Run();
 };
 
