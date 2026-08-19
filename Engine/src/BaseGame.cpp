@@ -46,6 +46,11 @@ void BaseGame::SwapBuffers()
     glfwSwapBuffers(window);
 }
 
+void BaseGame::Events()
+{
+    glfwPollEvents();
+}
+
 void BaseGame::Run()
 {
     if (!InIt())
@@ -64,6 +69,6 @@ void BaseGame::Run()
         SwapBuffers();
 
         /* Poll for and process events */
-        glfwPollEvents();
+        Events();
     }
 }
