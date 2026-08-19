@@ -8,8 +8,8 @@ BaseGame::BaseGame()
 
 BaseGame::~BaseGame()
 {
-	delete window;
 	delete render;
+	delete window;
 }
 
 void BaseGame::Run()
