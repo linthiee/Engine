@@ -18,6 +18,9 @@
     <ClCompile Include="src\BaseGame.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BaseGame.h">
