@@ -1,3 +1,4 @@
+#include "GL/glew.h"
 #include "Window.h"
 
 Window::Window()
@@ -29,6 +30,7 @@ void Window::CreateWindow(int width, int height, const char* title)
         return;
     }
     glfwMakeContextCurrent(window);
+    glewInit();
 }
 
 bool Window::WindowShouldClose()
