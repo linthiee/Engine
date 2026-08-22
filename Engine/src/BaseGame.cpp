@@ -26,6 +26,8 @@ void BaseGame::Run()
 		/* Render here */
 		render->Render();
 
+		render->DrawTriangle();
+
 		/* Swap front and back buffers */
 		window->SwapBuffers();
 

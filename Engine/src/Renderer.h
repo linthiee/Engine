@@ -10,5 +10,6 @@ public:
 	Renderer(Window* window);
 		
 	void Render();
+	void DrawTriangle();
 };
 
