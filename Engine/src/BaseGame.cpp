@@ -1,4 +1,5 @@
 #include "BaseGame.h"
+#include "Shape.h"
 
 BaseGame::BaseGame()
 {
@@ -14,12 +15,16 @@ BaseGame::~BaseGame()
 
 void BaseGame::Run()
 {
+	Shape shape = Shape(render, 3);
+
 	if (!window->Init())
 	{
 		return;
 	}
 
 	window->CreateWindow(600, 250, "BaseGame");
+
+	shape.InitBuffer();
 	/* Loop until the user closes the window */
 	while (!window->WindowShouldClose())
 	{
@@ -28,7 +33,7 @@ void BaseGame::Run()
 
 		/* Render here */
 		render->Render();
-
+		shape.Draw();
 		/* Poll for and process events */
 		window->Events();
 	}

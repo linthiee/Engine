@@ -1,16 +1,16 @@
 #pragma once
 #include "Window.h"
+#include <vector>
 
 class Renderer
 {
 private:
 	Window* renderWindow;
-	unsigned int buffer;
-
+	
 public:
 	Renderer(Window* window);
 	
 	void Render();
-	void DrawTriangle();
+	void Draw(int vertexCount);
 };
 
