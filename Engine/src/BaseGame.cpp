@@ -23,13 +23,11 @@ void BaseGame::Run()
 	/* Loop until the user closes the window */
 	while (!window->WindowShouldClose())
 	{
-		/* Render here */
-		render->Render();
-
-		render->DrawTriangle();
-
 		/* Swap front and back buffers */
 		window->SwapBuffers();
+
+		/* Render here */
+		render->Render();
 
 		/* Poll for and process events */
 		window->Events();

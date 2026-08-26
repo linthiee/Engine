@@ -5,7 +5,16 @@
 Renderer::Renderer(Window* window)
 {
 	renderWindow = window;
+}
 
+void Renderer::Render()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	DrawTriangle();
+}
+
+void Renderer::DrawTriangle()
+{
 	float positions[6] =
 	{
 	   -0.5f, -0.5f,
@@ -18,16 +27,6 @@ Renderer::Renderer(Window* window)
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
-}
-
-void Renderer::Render()
-{
-	glClear(GL_COLOR_BUFFER_BIT);
-	DrawTriangle();
-}
-
-void Renderer::DrawTriangle()
-{
 
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
