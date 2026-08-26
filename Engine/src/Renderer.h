@@ -5,6 +5,7 @@ class Renderer
 {
 private:
 	Window* renderWindow;
+	unsigned int buffer;
 
 public:
 	Renderer(Window* window);
