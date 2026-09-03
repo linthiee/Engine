@@ -24,6 +24,8 @@ void BaseGame::Run()
 
 	window->CreateWindow(600, 250, "BaseGame");
 
+	render->InitShaders();
+
 	shape.InitBuffer();
 	/* Loop until the user closes the window */
 	while (!window->WindowShouldClose())
