@@ -2,19 +2,50 @@
 #include "Renderer.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 
-const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"}\0";
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\n\0";
+struct ShaderSource
+{
+	std::string VertexSource;
+	std::string FragmentSource;
+};
+
+static ShaderSource ParseShader(const std::string& filepath)
+{
+	std::ifstream stream(filepath);
+
+	enum class ShaderType
+	{
+		NONE = -1, VERTEX = 0, FRAGMENT = 1
+	};
+
+	std::string line;
+	std::stringstream ss[2];
+	ShaderType shaderType = ShaderType::NONE;
+
+	while (getline(stream, line))
+	{
+		if (line.find("#shader") != std::string::npos)
+		{
+			if (line.find("vertex") != std::string::npos) 
+			{
+				shaderType = ShaderType::VERTEX;
+			}
+			else if (line.find("fragment") != std::string::npos)
+			{
+				shaderType = ShaderType::FRAGMENT;
+			}
+		}
+		else if (shaderType != ShaderType::NONE)
+		{
+			ss[(int)shaderType] << line << '\n';
+		}
+	}
+
+	return { ss[0].str(), ss[1].str() };
+}
 
 Renderer::Renderer(Window* window)
 {
@@ -23,6 +54,10 @@ Renderer::Renderer(Window* window)
 
 void Renderer::InitShaders()
 {
+	ShaderSource source = ParseShader("res/Shaders/Basic.shader");
+
+	const char* vertexShaderSource = source.VertexSource.c_str();
+
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 	glCompileShader(vertexShader);
@@ -36,6 +71,7 @@ void Renderer::InitShaders()
 		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
+	const char* fragmentShaderSource = source.FragmentSource.c_str();
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
 	glCompileShader(fragmentShader);
