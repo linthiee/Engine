@@ -1,15 +1,10 @@
 #pragma once
 
-#ifdef BASEGAME_EXPORTS
-#define BASEGAME_API __declspec(dllexport)
-#else
-#define BASEGAME_API __declspec(dllimport)
-#endif
-
+#include "Export.h"
 #include "Window.h"
 #include "Renderer.h"
 
-class /*BASEGAME_API*/ BaseGame
+class BASEGAME_API BaseGame
 {
 protected:
 	Window* window;

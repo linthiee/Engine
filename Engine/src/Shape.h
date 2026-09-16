@@ -1,9 +1,11 @@
 #pragma once
+
+#include "Export.h"
 #include "Entity2D.h"
 
 #include <vector>
 
-class Shape : Entity2D
+class BASEGAME_API Shape : Entity2D
 {
 private:	
 	std::vector<float> positions;
