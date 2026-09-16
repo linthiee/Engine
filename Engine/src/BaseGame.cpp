@@ -13,20 +13,22 @@ BaseGame::~BaseGame()
 	delete window;
 }
 
-void BaseGame::Run()
+void BaseGame::EngineInit(const int width, const int height, const char* name)
 {
-	Shape shape = Shape(render, 3);
-
 	if (!window->Init())
 	{
 		return;
 	}
 
-	window->CreateWindow(600, 250, "BaseGame");
+	window->CreateWindow(width, height, name);
 
 	render->InitShaders();
 
-	shape.InitBuffer();
+	Init();
+}
+
+void BaseGame::Run()
+{
 	/* Loop until the user closes the window */
 	while (!window->WindowShouldClose())
 	{
@@ -35,8 +37,11 @@ void BaseGame::Run()
 
 		/* Render here */
 		render->Render();
-		shape.Draw();
+		Update();
+
 		/* Poll for and process events */
 		window->Events();
 	}
+
+	Deinit();
 }

@@ -2,6 +2,10 @@
 #include <GL/glew.h>
 #include "Shape.h"
 
+Shape::Shape() : Entity2D(renderer)
+{
+}
+
 Shape::Shape(Renderer* renderer, int vertexCount, float position[]) : Entity2D(renderer)
 {
 	for (int i = 0; i <= vertexCount; i++)

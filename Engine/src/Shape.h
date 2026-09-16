@@ -10,6 +10,7 @@ private:
 	unsigned int buffer;
 
 public:
+	Shape();
 	Shape(Renderer* renderer, int vertexCount, float position[]);
 	Shape(Renderer* renderer, int vertexCount);
 
