@@ -16,14 +16,14 @@ Shape::Shape(Renderer* renderer, int vertexCount, float position[]) : Entity2D(r
 
 Shape::Shape(Renderer* renderer, int vertexCount) : Entity2D(renderer)
 {
-	float positions[6] =
+	float positions[] =
 	{
-		 -0.5f, -0.5f,
-		 0.5f, -0.5f,
-		 0.0f,  0.5f,
+		 -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 0.0f , 1.0f, 0.0f,
+		 0.0f,  0.5f, 0.0f, 0.0f , 1.0f
 	};
 
-	for (int i = 0; i <= vertexCount; i++)
+	for (int i = 0; i <= sizeof(positions) / sizeof(float); i++)
 	{
 		this->positions.push_back(positions[i]);
 	}
@@ -41,13 +41,20 @@ void Shape::InitBuffer()
 	glBufferData(GL_ARRAY_BUFFER, positions.size() * sizeof(float), positions.data(), GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (void*)0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)0);
+
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)(3 * sizeof(float)));
 }
 
 void Shape::Draw()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (void*)0);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)0);
+
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)(2 * sizeof(float)));
 
 	Entity::Draw(positions.size());
 }
