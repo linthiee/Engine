@@ -50,6 +50,8 @@ static ShaderSource ParseShader(const std::string& filepath)
 Renderer::Renderer(Window* window)
 {
 	renderWindow = window;
+
+	projection = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, 1.0f, 1.0f);
 }
 
 void Renderer::InitShaders()
@@ -109,3 +111,8 @@ void Renderer::Draw(int vertexCount)
 
 	glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 }
+
+//void Renderer::SetUniformMat4f(const std::string& name, glm::mat4x4& matrix)
+//{
+//	glUniformMatrix4fv(GetUniformLocation())
+//}
