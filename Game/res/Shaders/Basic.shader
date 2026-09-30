@@ -5,20 +5,24 @@
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aColor;
 
-out vec3 vertexColor;
+out vec3 vColor;
+
+uniform mat4 u_MVP;
 
 void main()
 {
-   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
-   vertexColor = aColor;
+    gl_Position = u_MVP * vec4(aPos, 1.0);
+    vColor = aColor; 
 }
 
 #shader fragment
 
 #version 330 core
-in vec3 vertexColor;
+
+in vec3 vColor;
 out vec4 FragColor;
+
 void main()
 {
-   FragColor = vec4(vertexColor, 1.0f);
+    FragColor = vec4(vColor, 1.0f);
 }
