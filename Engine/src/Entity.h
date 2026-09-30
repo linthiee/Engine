@@ -11,12 +11,13 @@ class BASEGAME_API Entity
 {
 protected:
 	Renderer* renderer;
+	Material* material;
 
 	Vector2 pos;
 	Vector2 rot;
 	Vector2 scale;
 
-	glm::mat4 model;
+	glm::mat4 trs;
 
 public:
 	Entity(Renderer* renderer);
@@ -34,5 +35,7 @@ public:
 	void setScale(Vector2 scale);
 
 	glm::mat4 getTRSMatrix();
+
+	void setMaterial(Material* material);
 };
 

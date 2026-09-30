@@ -16,10 +16,10 @@ Entity::Entity(Renderer* renderer, Vector2 pos, Vector2 rot, Vector2 scale)
 
 void Entity::Draw(int vertexCount)
 {
-	glm::mat4 viewProj = renderer->getProjectionMat4x4() * renderer->getViewMat4x4();
-	glm::mat4 world = viewProj * getTRSMatrix();
+	glm::mat4 mvp = renderer->getProjectionMat4x4() * renderer->getViewMat4x4() * getTRSMatrix();
 
-	renderer->SetUniformMat4f("u_MVP", world);
+	material->SetUniformMat4f("u_MVP", mvp);
+
 	renderer->Draw(vertexCount);
 }
 
@@ -55,9 +55,14 @@ void Entity::setScale(Vector2 scale)
 
 glm::mat4 Entity::getTRSMatrix()
 {
-	model = glm::translate(glm::identity<glm::mat4>(), glm::vec3(pos.x, pos.y, 0.0f));
-	model = glm::rotate(model, glm::radians(rot.x), glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::scale(model, glm::vec3(scale.x, scale.y, 1.0f));
+	trs = glm::translate(glm::identity<glm::mat4>(), glm::vec3(pos.x, pos.y, 0.0f));
+	trs = glm::rotate(trs, glm::radians(rot.x), glm::vec3(0.0f, 0.0f, 1.0f));
+	trs = glm::scale(trs, glm::vec3(scale.x, scale.y, 1.0f));
 
-	return model;
+	return trs;
+}
+
+void Entity::setMaterial(Material* material)
+{
+	this->material = material;
 }

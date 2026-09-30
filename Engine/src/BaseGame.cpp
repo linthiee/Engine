@@ -5,15 +5,17 @@ BaseGame::BaseGame()
 {
 	window = new Window();
 	render = new Renderer(window);
+	material = new Material();
 }
 
 BaseGame::~BaseGame()
 {
 	delete render;
 	delete window;
+	delete material;
 }
 
-void BaseGame::EngineInit(const int width, const int height, const char* name, const char* shader)
+void BaseGame::EngineInit(const int width, const int height, const char* name)
 {
 	if (!window->Init())
 	{
@@ -22,14 +24,11 @@ void BaseGame::EngineInit(const int width, const int height, const char* name, c
 
 	window->CreateWindow(width, height, name);
 
-	render->InitShaders(shader);
-
 	Init();
 }
 
 void BaseGame::Run()
 {
-	render->SetUniformMat4f("u_MVP", render->getMVPMatrix4x4());
 	/* Loop until the user closes the window */
 	while (!window->WindowShouldClose())
 	{
