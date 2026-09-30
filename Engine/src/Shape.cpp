@@ -33,13 +33,14 @@ Shape::Shape(Renderer* renderer, int vertexCount) : Entity2D(renderer)
 	{
 		 -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
 		 0.5f, -0.5f, 0.0f , 1.0f, 0.0f,
-		 0.0f,  0.5f, 0.0f, 0.0f , 1.0f,
+		 0.5f,  0.5f, 0.0f, 0.0f , 1.0f,
 		 -0.5f, 0.5f, 1.0f, 0.0f, 1.0f
 	};
 
 	int indices[] =
 	{
 		0, 1, 2,
+		0, 3, 2
 	};
 
 	for (int i = 0; i < sizeof(indices) / sizeof(int); i++)
