@@ -52,6 +52,9 @@ Renderer::Renderer(Window* window)
 	renderWindow = window;
 
 	projection = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+	view = glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.5, 0, 0));
+	model = glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.5, 0.5, 0));
+	mvp = projection * view * model;
 }
 
 void Renderer::InitShaders(std::string& shader)
@@ -125,7 +128,7 @@ int Renderer::GetUniformLocation(const std::string& name)
 	return location;
 }
 
-glm::mat4x4 Renderer::getProjectionMat4x4() const
+glm::mat4x4 Renderer::getMVPMatrix4x4() const
 {
-	return projection;
+	return mvp;
 }

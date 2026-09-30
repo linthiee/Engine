@@ -17,6 +17,9 @@ private:
 	unsigned int shaderProgram;
 
 	glm::mat4x4 projection;
+	glm::mat4x4 view;
+	glm::mat4x4 model;
+	glm::mat4x4 mvp;
 
 public:
 	Renderer(Window* window);
@@ -28,6 +31,6 @@ public:
 	void SetUniformMat4f(const std::string& name, const glm::mat4x4& matrix);
 	int GetUniformLocation(const std::string& name);
 
-	glm::mat4x4 getProjectionMat4x4() const;
+	glm::mat4x4 getMVPMatrix4x4() const;
 };
 

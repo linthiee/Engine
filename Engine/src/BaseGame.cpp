@@ -29,7 +29,7 @@ void BaseGame::EngineInit(const int width, const int height, const char* name, s
 
 void BaseGame::Run()
 {
-	render->SetUniformMat4f("u_MVP", render->getProjectionMat4x4());
+	render->SetUniformMat4f("u_MVP", render->getMVPMatrix4x4());
 	/* Loop until the user closes the window */
 	while (!window->WindowShouldClose())
 	{
