@@ -28,9 +28,9 @@ void Game::Init()
         0, 1, 2,
     };
 
-    shape2 = new Shape(render, 15, positions2, 3, indices2);
+    shape2 = new Shape(render, 15, positions, 3, indices);
 
-    shape3 = new Shape(render, 15, positions2, 3, indices2);
+    shape3 = new Shape(render, 15, positions, 3, indices);
 
     Material* shader = new Material("res/Shaders/Basic.shader");
 
