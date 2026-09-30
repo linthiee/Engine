@@ -59,7 +59,7 @@ void Game::Init()
 
 	square->setPos(Vector2(-0.5f, 0.0f));
 	triangle->setPos(Vector2(1.5f, 0.0f));
-	blueSquare->setPos(Vector2(-2.2f, -1.2f));
+	blueSquare->setPos(Vector2(-2.2f, 1.2f));
 
 	normalSquare->setPos(Vector2(-1.4f, 0.0f));
 	invertedSquare->setPos(Vector2(-1.4f, -0.2f));
@@ -123,22 +123,22 @@ void Game::Update()
 	if (direction == 0 && currentSqrPos.x >= 1.2f)
 	{
 		currentSqrPos.x = 1.2f;
-		direction = 1;
+		direction = 3;
 	}
 	else if (direction == 1 && currentSqrPos.y <= -1.2f)
 	{
 		currentSqrPos.y = -1.2f;
-		direction = 2;
+		direction = 0;
 	}
 	else if (direction == 2 && currentSqrPos.x <= -2.2f)
 	{
 		currentSqrPos.x = -2.2f;
-		direction = 3;
+		direction = 1;
 	}
 	else if (direction == 3 && currentSqrPos.y >= 1.2f)
 	{
 		currentSqrPos.y = 1.2f;
-		direction = 0;
+		direction = 2;
 	}
 	blueSquare->setPos(currentSqrPos);
 
