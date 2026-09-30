@@ -16,4 +16,5 @@ private:
 
 	Shape* shape;
 	Shape* shape2;
+	Shape* shape3;
 };
