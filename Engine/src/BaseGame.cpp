@@ -4,7 +4,7 @@
 BaseGame::BaseGame()
 {
 	window = new Window();
-	render = new Renderer(window);
+	render = new Renderer();
 	material = new Material();
 }
 

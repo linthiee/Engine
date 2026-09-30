@@ -8,7 +8,6 @@
 class Renderer
 {
 private:
-	Window* renderWindow;
 	Material* material;
 
 	glm::mat4x4 projection;
@@ -17,7 +16,7 @@ private:
 	glm::mat4x4 mvp;
 
 public:
-	Renderer(Window* window);
+	Renderer();
 	
 	void Render();
 	void Draw(int indices);

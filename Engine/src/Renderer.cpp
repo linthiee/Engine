@@ -3,10 +3,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-Renderer::Renderer(Window* window)
+Renderer::Renderer()
 {
-	renderWindow = window;
-
 	projection = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
 	view = glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.5, 0, 0));
 	model = glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.5, 0.5, 0));
