@@ -1,9 +1,6 @@
 #pragma once
 #include "Window.h"
 
-#include <vector>
-#include <string>
-
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
@@ -24,13 +21,15 @@ private:
 public:
 	Renderer(Window* window);
 	
-	void InitShaders(std::string& shader);
+	void InitShaders(const char* shader);
 	void Render();
-	void Draw(int vertexCount);
+	void Draw(int indices);
 
-	void SetUniformMat4f(const std::string& name, const glm::mat4x4& matrix);
-	int GetUniformLocation(const std::string& name);
+	void SetUniformMat4f(const char* name, const glm::mat4x4& matrix);
+	int GetUniformLocation(const char* name);
 
 	glm::mat4x4 getMVPMatrix4x4() const;
+	glm::mat4x4 getProjectionMat4x4() const;
+	glm::mat4x4 getViewMat4x4() const;
 };
 

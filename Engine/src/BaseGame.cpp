@@ -13,7 +13,7 @@ BaseGame::~BaseGame()
 	delete window;
 }
 
-void BaseGame::EngineInit(const int width, const int height, const char* name, std::string& shader)
+void BaseGame::EngineInit(const int width, const int height, const char* name, const char* shader)
 {
 	if (!window->Init())
 	{

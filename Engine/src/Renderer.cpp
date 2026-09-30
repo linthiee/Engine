@@ -54,12 +54,14 @@ Renderer::Renderer(Window* window)
 	projection = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
 	view = glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.5, 0, 0));
 	model = glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.5, 0.5, 0));
+
 	mvp = projection * view * model;
 }
 
-void Renderer::InitShaders(std::string& shader)
+void Renderer::InitShaders(const char* shader)
 {
-	ShaderSource source = ParseShader(shader);
+	std::string path(shader);
+	ShaderSource source = ParseShader(path);
 
 	const char* vertexShaderSource = source.VertexSource.c_str();
 
@@ -108,22 +110,24 @@ void Renderer::Render()
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::Draw(int vertexCount)
+void Renderer::Draw(int indices)
 {
 	glUseProgram(shaderProgram);
 
-	glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+	glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr);
 }
 
-void Renderer::SetUniformMat4f(const std::string& name, const glm::mat4x4& matrix)
+void Renderer::SetUniformMat4f(const char* name, const glm::mat4x4& matrix)
 {
 	glUseProgram(shaderProgram);
 	glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
 }
 
-int Renderer::GetUniformLocation(const std::string& name)
+int Renderer::GetUniformLocation(const char* name)
 {
-	int location = glGetUniformLocation(shaderProgram, name.c_str());
+	std::string sName = name;
+
+	int location = glGetUniformLocation(shaderProgram, sName.c_str());
 
 	return location;
 }
@@ -131,4 +135,14 @@ int Renderer::GetUniformLocation(const std::string& name)
 glm::mat4x4 Renderer::getMVPMatrix4x4() const
 {
 	return mvp;
+}
+
+glm::mat4x4 Renderer::getProjectionMat4x4() const
+{
+	return projection;
+}
+
+glm::mat4x4 Renderer::getViewMat4x4() const
+{
+	return view;
 }
