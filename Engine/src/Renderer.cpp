@@ -29,7 +29,7 @@ static ShaderSource ParseShader(const std::string& filepath)
 	{
 		if (line.find("#shader") != std::string::npos)
 		{
-			if (line.find("vertex") != std::string::npos) 
+			if (line.find("vertex") != std::string::npos)
 			{
 				shaderType = ShaderType::VERTEX;
 			}
@@ -51,12 +51,12 @@ Renderer::Renderer(Window* window)
 {
 	renderWindow = window;
 
-	projection = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, 1.0f, 1.0f);
+	projection = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
 }
 
-void Renderer::InitShaders()
+void Renderer::InitShaders(std::string& shader)
 {
-	ShaderSource source = ParseShader("res/Shaders/Basic.shader");
+	ShaderSource source = ParseShader(shader);
 
 	const char* vertexShaderSource = source.VertexSource.c_str();
 
@@ -112,7 +112,20 @@ void Renderer::Draw(int vertexCount)
 	glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 }
 
-//void Renderer::SetUniformMat4f(const std::string& name, glm::mat4x4& matrix)
-//{
-//	glUniformMatrix4fv(GetUniformLocation())
-//}
+void Renderer::SetUniformMat4f(const std::string& name, const glm::mat4x4& matrix)
+{
+	glUseProgram(shaderProgram);
+	glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
+}
+
+int Renderer::GetUniformLocation(const std::string& name)
+{
+	int location = glGetUniformLocation(shaderProgram, name.c_str());
+
+	return location;
+}
+
+glm::mat4x4 Renderer::getProjectionMat4x4() const
+{
+	return projection;
+}

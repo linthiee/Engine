@@ -2,6 +2,7 @@
 #include "Window.h"
 
 #include <vector>
+#include <string>
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -20,10 +21,13 @@ private:
 public:
 	Renderer(Window* window);
 	
-	void InitShaders();
+	void InitShaders(std::string& shader);
 	void Render();
 	void Draw(int vertexCount);
 
-	//void SetUniformMat4f(const std::string& name, glm::mat4x4& matrix);
+	void SetUniformMat4f(const std::string& name, const glm::mat4x4& matrix);
+	int GetUniformLocation(const std::string& name);
+
+	glm::mat4x4 getProjectionMat4x4() const;
 };
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "Export.h"
 #include "Window.h"
 #include "Renderer.h"
@@ -14,7 +16,7 @@ public:
 	BaseGame();
 	~BaseGame();
 
-	void EngineInit(const int width, const int height, const char* name);
+	void EngineInit(const int width, const int height, const char* name, std::string& shader);
 
 	virtual void Init() = 0;
 	virtual void Update() = 0;

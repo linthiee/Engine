@@ -31,6 +31,8 @@ void Window::CreateWindow(int width, int height, const char* title)
     }
     glfwMakeContextCurrent(window);
     glewInit();
+
+    glfwSwapInterval(1);
 }
 
 bool Window::WindowShouldClose()
