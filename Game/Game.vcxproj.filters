@@ -26,6 +26,18 @@
     <None Include="res\Shaders\Basic.shader">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="res\Shaders\Pink.shader">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\Shaders\Orange.shader">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\Shaders\Blue.shader">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\Shaders\Red.shader">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">

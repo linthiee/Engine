@@ -14,6 +14,10 @@ public:
 
 private:
 
-	Shape* shape;
-	Shape* shape2;
+	Shape* square;
+	Shape* triangle;
+	Shape* blueSquare;
+
+	Shape* normalSquare;
+	Shape* invertedSquare;
 };

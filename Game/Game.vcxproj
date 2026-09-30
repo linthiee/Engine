@@ -29,6 +29,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\Basic.shader" />
+    <None Include="res\Shaders\Blue.shader" />
+    <None Include="res\Shaders\Orange.shader" />
+    <None Include="res\Shaders\Pink.shader" />
+    <None Include="res\Shaders\Red.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
