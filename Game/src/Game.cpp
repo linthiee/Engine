@@ -35,27 +35,27 @@ void Game::Init()
 
 void Game::Update()
 {
-    Vector2 currentRot1 = shape->getRot();
+    Vector3 currentRot1 = shape->getRot();
     currentRot1.x += 1.0f;
     shape->setRot(currentRot1);
 
-    static float moveSpeed1 = 0.02f;
-    Vector2 currentPos1 = shape->getPos();
-    currentPos1.x += moveSpeed1;
-    if (currentPos1.x > 1.5f || currentPos1.x < -1.5f)
-        moveSpeed1 = -moveSpeed1;
-    shape->setPos(currentPos1);
+    //static float moveSpeed1 = 0.02f;
+    //Vector2 currentPos1 = shape->getPos();
+    //currentPos1.x += moveSpeed1;
+    //if (currentPos1.x > 1.5f || currentPos1.x < -1.5f)
+    //    moveSpeed1 = -moveSpeed1;
+    //shape->setPos(currentPos1);
 
-    static float scaleSpeed1 = 0.01f;
-    Vector2 currentScale1 = shape->getScale();
-    currentScale1.x += scaleSpeed1;
-    currentScale1.y += scaleSpeed1;
-    if (currentScale1.x > 2.0f || currentScale1.x < 0.5f)
-        scaleSpeed1 = -scaleSpeed1;
-    shape->setScale(currentScale1);
+    //static float scaleSpeed1 = 0.01f;
+    //Vector2 currentScale1 = shape->getScale();
+    //currentScale1.x += scaleSpeed1;
+    //currentScale1.y += scaleSpeed1;
+    //if (currentScale1.x > 2.0f || currentScale1.x < 0.5f)
+    //    scaleSpeed1 = -scaleSpeed1;
+    //shape->setScale(currentScale1);
 
     //shape2
-    Vector2 currentRot2 = shape2->getRot();
+  /*  Vector2 currentRot2 = shape2->getRot();
     currentRot2.x -= 2.0f;
     shape2->setRot(currentRot2);
 
@@ -64,10 +64,10 @@ void Game::Update()
     currentPos2.y += moveSpeed2;
     if (currentPos2.y > 1.0f || currentPos2.y < -1.0f) 
         moveSpeed2 = -moveSpeed2;
-    shape2->setPos(currentPos2);
+    shape2->setPos(currentPos2);*/
 
     shape->Draw();
-    shape2->Draw();
+    //shape2->Draw();
 }
 
 void Game::Deinit()
