@@ -22,13 +22,8 @@ Entity::Entity(Renderer* renderer, Vector2 pos, Vector3 rot, Vector2 scale)
 	isDirty = true;
 }
 
-void Entity::Draw(int vertexCount)
+Entity::~Entity()
 {
-	glm::mat4 mvp = renderer->getProjectionMat4x4() * renderer->getViewMat4x4() * getTRSMatrix();
-
-	material->SetUniformMat4f("u_MVP", mvp);
-
-	renderer->Draw(vertexCount);
 }
 
 Vector2 Entity::getPos()
@@ -80,9 +75,4 @@ glm::mat4 Entity::getTRSMatrix()
 	}
 
 	return trs;
-}
-
-void Entity::setMaterial(Material* material)
-{
-	this->material = material;
 }

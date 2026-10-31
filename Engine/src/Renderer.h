@@ -8,14 +8,10 @@
 class Renderer
 {
 private:
-	Material* material;
-
 	glm::mat4x4 projection;
 	glm::mat4x4 view;
-	glm::mat4x4 model;
-	glm::mat4x4 mvp;
 
-	int aspectRatio;
+	float aspectRatio;
 
 public:
 	Renderer();
@@ -28,7 +24,6 @@ public:
 	void BindVAO(unsigned int vao);
 	void DeleteBuffers(unsigned int& vao, unsigned int& vbo, unsigned int& ibo);
 
-	glm::mat4x4 getMVPMatrix4x4() const;
 	glm::mat4x4 getProjectionMat4x4() const;
 	glm::mat4x4 getViewMat4x4() const;
 };

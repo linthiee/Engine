@@ -12,21 +12,18 @@ class BASEGAME_API Entity
 {
 protected:
 	Renderer* renderer;
-	Material* material;
 
 	Vector2 pos;
 	Vector3 rot;
 	Vector2 scale;
 
 	glm::mat4 trs;
-
 	bool isDirty;
 
 public:
 	Entity(Renderer* renderer);
 	Entity(Renderer* renderer, Vector2 pos, Vector3 rot, Vector2 scale);
-
-	virtual void Draw(int vertexCount);
+	virtual ~Entity();
 
 	Vector2 getPos();
 	void setPos(Vector2 pos);
@@ -39,6 +36,5 @@ public:
 
 	glm::mat4 getTRSMatrix();
 
-	void setMaterial(Material* material);
 };
 

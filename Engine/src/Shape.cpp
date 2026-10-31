@@ -17,7 +17,7 @@ void Shape::InitBuffer()
 void Shape::Draw()
 {
 	renderer->BindVAO(vao);
-	Entity::Draw(indices.size());
+	Entity2D::Draw(indices.size());
 }
 
 void Shape::Destroy()

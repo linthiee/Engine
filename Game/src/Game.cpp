@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Renderer.h"
 #include <iostream>
 
 void Game::Init()

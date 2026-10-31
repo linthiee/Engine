@@ -10,7 +10,6 @@ class BASEGAME_API BaseGame
 protected:
 	Window* window;
 	Renderer* render;
-	Material* material;
 
 public:
 	BaseGame();

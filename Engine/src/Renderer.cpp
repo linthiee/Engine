@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "Entity2D.h"
 
 Renderer::Renderer()
 {
@@ -11,13 +12,10 @@ Renderer::Renderer()
 void Renderer::Init(const int width, const int height)
 {
 	float orthoSize = 5.0f;
-	aspectRatio = width / height;
+	aspectRatio = static_cast<float>(width) / static_cast<float>(height);
 
 	projection = glm::ortho(-orthoSize * aspectRatio, orthoSize * aspectRatio, -orthoSize, orthoSize, 0.1f, 100.0f);
 	view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.5, 0.5, 0));
-
-	mvp = projection * view * model;
 }
 
 void Renderer::Render()
@@ -64,11 +62,6 @@ void Renderer::DeleteBuffers(unsigned int& vao, unsigned int& vbo, unsigned int&
 	glDeleteVertexArrays(1, &vao);
 	glDeleteBuffers(1, &vbo);
 	glDeleteBuffers(1, &ibo);
-}
-
-glm::mat4x4 Renderer::getMVPMatrix4x4() const
-{
-	return mvp;
 }
 
 glm::mat4x4 Renderer::getProjectionMat4x4() const
