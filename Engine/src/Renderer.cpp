@@ -5,8 +5,16 @@
 
 Renderer::Renderer()
 {
-	projection = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
-	view = glm::lookAt(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	
+}
+
+void Renderer::Init(const int width, const int height)
+{
+	float orthoSize = 5.0f;
+	aspectRatio = width / height;
+
+	projection = glm::ortho(-orthoSize * aspectRatio, orthoSize * aspectRatio, -orthoSize, orthoSize, 0.1f, 100.0f);
+	view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.5, 0.5, 0));
 
 	mvp = projection * view * model;

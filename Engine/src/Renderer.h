@@ -15,9 +15,12 @@ private:
 	glm::mat4x4 model;
 	glm::mat4x4 mvp;
 
+	int aspectRatio;
+
 public:
 	Renderer();
 	
+	void Init(const int width, const int height);
 	void Render();
 	void Draw(int indices);
 

@@ -23,6 +23,7 @@ void BaseGame::EngineInit(const int width, const int height, const char* name)
 	}
 
 	window->CreateWindow(width, height, name);
+	render->Init(width, height);
 
 	Init();
 }
