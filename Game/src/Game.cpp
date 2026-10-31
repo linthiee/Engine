@@ -18,6 +18,10 @@ void Game::Update()
     Vector2 translation = triangle->getPos();
     translation.y += 0.01f;
     triangle->setPos(translation);
+    
+    Vector3 rotation = square->getRot();
+    rotation.z += 0.1f;
+    square->setRot(rotation);
 
     triangle->Draw();
     square->Draw();
