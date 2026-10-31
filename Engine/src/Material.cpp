@@ -4,95 +4,91 @@
 #include <sstream>
 #include <iostream>
 
-static ShaderSource ParseShader(const std::string& filepath)
+std::string Material::ReadFile(const char* filepath)
 {
 	std::ifstream stream(filepath);
-
-	enum class ShaderType
+	if (!stream.is_open())
 	{
-		NONE = -1, VERTEX = 0, FRAGMENT = 1
-	};
-
-	std::string line;
-	std::stringstream ss[2];
-	ShaderType shaderType = ShaderType::NONE;
-
-	while (getline(stream, line))
-	{
-		if (line.find("#shader") != std::string::npos)
-		{
-			if (line.find("vertex") != std::string::npos)
-			{
-				shaderType = ShaderType::VERTEX;
-			}
-			else if (line.find("fragment") != std::string::npos)
-			{
-				shaderType = ShaderType::FRAGMENT;
-			}
-		}
-		else if (shaderType != ShaderType::NONE)
-		{
-			ss[(int)shaderType] << line << '\n';
-		}
+		std::cout << "ERROR::SHADER::FILE_NOT_FOUND: " << filepath << std::endl;
+		return "";
 	}
 
-	return { ss[0].str(), ss[1].str() };
+	std::stringstream stringStream;
+	stringStream << stream.rdbuf();
+	return stringStream.str();
+}
+
+unsigned int Material::CompileShader(unsigned int type, const std::string& source)
+{
+	unsigned int id = glCreateShader(type);
+	const char* src = source.c_str();
+	glShaderSource(id, 1, &src, NULL);
+	glCompileShader(id);
+
+	int success;
+	char infoLog[512];
+	glGetShaderiv(id, GL_COMPILE_STATUS, &success);
+	if (!success)
+	{
+		glGetShaderInfoLog(id, 512, NULL, infoLog);
+		const char* typeName = (type == GL_VERTEX_SHADER) ? "VERTEX" : "FRAGMENT";
+		std::cout << "ERROR::SHADER::" << typeName << "::COMPILATION_FAILED\n" << infoLog << std::endl;
+	}
+
+	return id;
 }
 
 Material::Material()
 {
 }
 
-Material::Material(const char* shaderPath)
+Material::Material(const char* vertexPath, const char* fragmentPath)
 {
-	std::string path(shaderPath);
-	ShaderSource source = ParseShader(path);
+	LoadVertexShader(vertexPath);
+	LoadFragmentShader(fragmentPath);
+	CreateMaterialProgram();
+}
 
-	const char* vertexShaderSource = source.VertexSource.c_str();
-
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	int success;
-	char infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-	if (!success)
+Material::~Material()
+{
+	if (shaderProgram != 0)
 	{
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+		glDeleteProgram(shaderProgram);
 	}
+}
 
-	const char* fragmentShaderSource = source.FragmentSource.c_str();
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
+void Material::LoadVertexShader(const char* vertexPath)
+{
+	std::string vertexSource = ReadFile(vertexPath);
+	vertexShader = CompileShader(GL_VERTEX_SHADER, vertexSource);
+}
 
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
+void Material::LoadFragmentShader(const char* fragmentPath)
+{
+	std::string fragmentSource = ReadFile(fragmentPath);
+	fragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragmentSource);
+}
 
+void Material::CreateMaterialProgram()
+{
 	shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glLinkProgram(shaderProgram);
 
+	int success;
+	char infoLog[512];
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 	if (!success)
 	{
 		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 	}
+
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
-}
-
-Material::~Material()
-{
-	glDeleteProgram(shaderProgram);
+	vertexShader = 0;
+	fragmentShader = 0;
 }
 
 void Material::SetUniformMat4f(const char* name, const glm::mat4x4& matrix)

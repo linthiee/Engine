@@ -28,10 +28,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\Shaders\Basic.shader" />
+    <ClInclude Include="src\Game.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Game.h" />
+    <None Include="res\Shaders\BasicShader.fragment" />
+    <None Include="res\Shaders\BasicShader.vertex" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

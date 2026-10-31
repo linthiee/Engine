@@ -4,7 +4,7 @@
 
 void Game::Init()
 {
-    Material* shader = new Material("res/Shaders/Basic.shader");
+    Material* shader = new Material("res/Shaders/BasicShader.vertex", "res/Shaders/BasicShader.fragment");
 
     triangle = new Triangle(render);
     square = new Square(render);

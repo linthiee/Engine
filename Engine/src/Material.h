@@ -5,25 +5,24 @@
 
 #include "glm/glm.hpp"
 
-struct ShaderSource
-{
-	std::string VertexSource;
-	std::string FragmentSource;
-};
-
 class BASEGAME_API Material
 {
 private:
+	unsigned int shaderProgram = 0;
+	unsigned int vertexShader = 0;
+	unsigned int fragmentShader = 0;
 
-	unsigned int vertexShader;
-	unsigned int fragmentShader;
-	unsigned int shaderProgram;
-
+	std::string ReadFile(const char* filepath);
+	unsigned int CompileShader(unsigned int type, const std::string& source);
 public:
 
 	Material();
-	Material(const char* shaderPath);
+	Material(const char* vertexPath, const char* fragmentPath);
 	~Material();
+
+	void LoadVertexShader(const char* vertexPath);
+	void LoadFragmentShader(const char* fragmentPath);
+	void CreateMaterialProgram();
 
 	void SetUniformMat4f(const char* name, const glm::mat4x4& matrix);
 	int GetUniformLocation(const char* name);
