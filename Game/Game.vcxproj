@@ -33,6 +33,8 @@
   <ItemGroup>
     <None Include="res\Shaders\BasicShader.fragment" />
     <None Include="res\Shaders\BasicShader.vertex" />
+    <None Include="res\Textures\TextureShader.fragment" />
+    <None Include="res\Textures\TextureShader.vertex" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

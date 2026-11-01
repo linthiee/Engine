@@ -25,6 +25,7 @@ public:
 	void CreateMaterialProgram();
 
 	void SetUniformMat4f(const char* name, const glm::mat4x4& matrix);
+	void SetUniform1i(const char* name, int value);
 	int GetUniformLocation(const char* name);
 
 	void Bind();

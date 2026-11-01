@@ -97,6 +97,12 @@ void Material::SetUniformMat4f(const char* name, const glm::mat4x4& matrix)
 	glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
 }
 
+void Material::SetUniform1i(const char* name, int value)
+{
+	Bind();
+	glUniform1i(GetUniformLocation(name), value);
+}
+
 int Material::GetUniformLocation(const char* name)
 {
 	std::string sName = name;

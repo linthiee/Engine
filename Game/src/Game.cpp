@@ -4,6 +4,10 @@
 void Game::Init()
 {
     Material* shader = new Material("res/Shaders/BasicShader.vertex", "res/Shaders/BasicShader.fragment");
+    Material* texShader = new Material("res/Textures/TextureShader.vertex", "res/Textures/TextureShader.fragment");
+
+    sprite = new Sprite(render, "res/Textures/Triangle.png");
+    sprite->setMaterial(texShader);
 
     triangle = new Triangle(render);
     square = new Square(render);
@@ -24,6 +28,7 @@ void Game::Update()
 
     triangle->Draw();
     square->Draw();
+    sprite->Draw();
 }
 
 void Game::Deinit()
@@ -36,10 +41,12 @@ Game::Game()
 {
 	triangle = nullptr;
     square = nullptr;
+    sprite = nullptr;
 }
 
 Game::~Game()
 {
     triangle->Destroy();
     square->Destroy();
+    sprite->Destroy();
 }

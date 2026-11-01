@@ -1,3 +1,4 @@
+#include "GL/glew.h"
 #include "TextureImporter.h"
 #include "stb_image.h"
 
@@ -10,6 +11,19 @@ TextureImporter::TextureImporter()
 	width = 0;
 	height = 0;
 	bitsPerPixel = 0;
+}
+
+TextureImporter::TextureImporter(const char* filepath)
+{
+	renderID = 0;
+
+	localBuffer = nullptr;
+
+	width = 0;
+	height = 0;
+	bitsPerPixel = 0;
+
+	ImportTexture(filepath);
 }
 
 TextureImporter::~TextureImporter()
@@ -40,8 +54,9 @@ void TextureImporter::ImportTexture(const char* filepath)
 		stbi_image_free(localBuffer);
 }
 
-void TextureImporter::Bind() const
+void TextureImporter::Bind(unsigned int slot) const
 {
+	glActiveTexture(GL_TEXTURE0 + slot);
 	glBindTexture(GL_TEXTURE_2D, renderID);
 }
 

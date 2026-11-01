@@ -2,6 +2,7 @@
 #include "BaseGame.h"
 #include "Triangle.h"
 #include "Square.h"
+#include "Sprite.h"
 
 class Game : public BaseGame
 {
@@ -17,4 +18,5 @@ private:
 
 	Triangle* triangle;
 	Square* square;
+	Sprite* sprite;
 };

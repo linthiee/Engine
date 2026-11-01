@@ -20,6 +20,7 @@ public:
 	void Render();
 	void Draw(int indices);
 
+	//void InitSpriteBuffers(const float* positions, int posSizeInBytes, const unsigned int* indices, int indicesSizeInBytes, unsigned int& vao, unsigned int& vbo, unsigned int& ibo);
 	void InitBuffers(const float* positions, int posSizeInBytes, const unsigned int* indices, int indicesSizeInBytes, unsigned int& vao, unsigned int& vbo, unsigned int& ibo);
 	void BindVAO(unsigned int vao);
 	void DeleteBuffers(unsigned int& vao, unsigned int& vbo, unsigned int& ibo);

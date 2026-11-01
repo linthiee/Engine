@@ -1,7 +1,7 @@
 #pragma once
 #include "Renderer.h"
 
-class TextureImporter
+class BASEGAME_API TextureImporter
 {
 private:
 	unsigned int renderID;
@@ -14,11 +14,12 @@ private:
 
 public:
 	TextureImporter();
+	TextureImporter(const char* filepath);
 	~TextureImporter();
 
 	void ImportTexture(const char* filepath);
 
-	void Bind() const;
+	void Bind(unsigned int slot = 0) const;
 	void Unbind();
 
 	int GetWidth() const;
