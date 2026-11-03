@@ -23,13 +23,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\Shaders\Basic.shader">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="src\Game.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Shaders\BasicShader.fragment">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\Shaders\BasicShader.vertex">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\Textures\TextureShader.fragment">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\Textures\TextureShader.vertex">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

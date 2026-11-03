@@ -1,6 +1,8 @@
 #pragma once
 #include "BaseGame.h"
-#include "Shape.h"
+#include "Triangle.h"
+#include "Square.h"
+#include "Sprite.h"
 
 class Game : public BaseGame
 {
@@ -14,6 +16,7 @@ public:
 
 private:
 
-	Shape* shape;
-	Shape* shape2;
+	Triangle* triangle;
+	Square* square;
+	Sprite* sprite;
 };

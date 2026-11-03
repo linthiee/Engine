@@ -5,14 +5,12 @@ BaseGame::BaseGame()
 {
 	window = new Window();
 	render = new Renderer();
-	material = new Material();
 }
 
 BaseGame::~BaseGame()
 {
 	delete render;
 	delete window;
-	delete material;
 }
 
 void BaseGame::EngineInit(const int width, const int height, const char* name)
@@ -23,6 +21,7 @@ void BaseGame::EngineInit(const int width, const int height, const char* name)
 	}
 
 	window->CreateWindow(width, height, name);
+	render->Init(width, height);
 
 	Init();
 }

@@ -1,28 +1,23 @@
 #pragma once
+#include "Export.h"
 #include "Entity2D.h"
-
 #include <vector>
 
 class BASEGAME_API Shape : public Entity2D
 {
-private:	
-	std::vector<float>* positions;
-	std::vector<unsigned int>* indices;
+protected:
+	std::vector<float> positions;
+	std::vector<unsigned int> indices;
 
-	unsigned int buffer;
-	unsigned int ibo;
-	unsigned int vao;
+	unsigned int vao = 0;
+	unsigned int buffer = 0; // vbo
+	unsigned int ibo = 0;
 
 public:
-	Shape();
-	Shape(Renderer* renderer, int floatCount, float position[], int indexCount, int indices[]);
-	Shape(Renderer* renderer, int vertexCount);
-
-	~Shape();
+	Shape(Renderer* renderer);
+	virtual ~Shape();
 
 	void InitBuffer();
-
-	void Draw();
-
+	virtual void Draw();
 	void Destroy();
 };
