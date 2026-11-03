@@ -16,5 +16,6 @@ public:
 	bool WindowShouldClose();
 	void SwapBuffers();
 	void Events();
+	GLFWwindow* GetWindow();
 };
 

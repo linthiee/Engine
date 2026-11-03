@@ -22,6 +22,11 @@ void Game::Update()
     translation.y += 0.01f;
     triangle->setPos(translation);
     
+    if (input->isKeyPressed(KEY_SPACE))
+    {
+        std::cout << "Apretando Space" << std::endl;
+    }
+
     Vector3 rotation = square->getRot();
     rotation.z += 0.1f;
     square->setRot(rotation);

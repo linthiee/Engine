@@ -51,3 +51,8 @@ void Window::Events()
     glfwPollEvents();
 }
 
+GLFWwindow* Window::GetWindow()
+{
+    return window;
+}
+

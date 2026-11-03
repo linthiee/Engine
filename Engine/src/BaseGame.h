@@ -4,12 +4,14 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "Material.h"
+#include "Input.h"
 
 class BASEGAME_API BaseGame
 {
 protected:
 	Window* window;
 	Renderer* render;
+	Input* input;
 
 public:
 	BaseGame();
