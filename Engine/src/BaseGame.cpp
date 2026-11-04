@@ -5,7 +5,7 @@ BaseGame::BaseGame()
 {
 	window = new Window();
 	render = new Renderer();
-	input = new Input();
+	input = new Input(window);
 }
 
 BaseGame::~BaseGame()
@@ -24,7 +24,6 @@ void BaseGame::EngineInit(const int width, const int height, const char* name)
 
 	window->CreateWindow(width, height, name);
 	render->Init(width, height);
-	input->SetWindow(window->GetWindow());
 
 	Init();
 }

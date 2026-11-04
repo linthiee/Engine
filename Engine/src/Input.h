@@ -129,19 +129,19 @@ enum  Key
 };
 
 struct GLFWwindow;
+class Window;
 
 class BASEGAME_API Input
 {
 public:
-	Input();
+	Input(Window* window);
 	~Input();
 	bool isKeyPressed(Key key);
 	bool isKeyUp(Key key);
-    void SetWindow(GLFWwindow* window);
 	
 
 private:
-	GLFWwindow* window;
+	Window* window;
 
 };
 
