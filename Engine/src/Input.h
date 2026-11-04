@@ -2,7 +2,7 @@
 #include <vector>
 #include "Export.h"
 
-enum  Key
+enum Key
 {
     KEY_SPACE = 32,
     KEY_APOSTROPHE = 39,

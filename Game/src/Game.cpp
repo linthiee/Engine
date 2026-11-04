@@ -33,6 +33,22 @@ void Game::Update()
         std::cout << "X:" << input->getMousePos().x << "Y:" << input->getMousePos().y << std::endl;
     }
 
+    Vector2 inputMove = sprite->getPos();
+
+    if (input->isKeyPressed(KEY_W))
+        inputMove.y += 0.1f;
+
+    if (input->isKeyPressed(KEY_S))
+        inputMove.y -= 0.1f;
+
+    if (input->isKeyPressed(KEY_D))
+        inputMove.x += 0.1f;
+
+    if (input->isKeyPressed(KEY_A))
+        inputMove.x -= 0.1f;
+
+    sprite->setPos(inputMove);
+
     Vector3 rotation = square->getRot();
     rotation.z += 0.1f;
     square->setRot(rotation);

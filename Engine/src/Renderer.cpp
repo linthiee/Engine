@@ -31,37 +31,6 @@ void Renderer::Draw(int indices)
 	glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr);
 }
 
-//void Renderer::InitSpriteBuffers(const float* positions, int posSizeInBytes, const unsigned int* indices, int indicesSizeInBytes, unsigned int& vao, unsigned int& vbo, unsigned int& ibo)
-//{
-//	glGenVertexArrays(1, &vao);
-//	glBindVertexArray(vao);
-//
-//	glGenBuffers(1, &vbo);
-//	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-//	glBufferData(GL_ARRAY_BUFFER, posSizeInBytes, positions, GL_STATIC_DRAW);
-//
-//	glGenBuffers(1, &ibo);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesSizeInBytes, indices, GL_STATIC_DRAW);
-//
-//	int stride = // 2 pos + 3 color + 2 texCoords (UV)
-//
-//	// Layout 0: Posición (X, Y)
-//	glEnableVertexAttribArray(0);
-//	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
-//
-//	// Layout 1: Color (R, G, B)
-//	glEnableVertexAttribArray(1);
-//	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
-//
-//	// Layout 2: Coordenadas de Textura (U, V)
-//
-//
-//	glBindVertexArray(0);
-//	glBindBuffer(GL_ARRAY_BUFFER, 0);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-//}
-
 void Renderer::InitBuffers(const float* positions, int posSizeInBytes, const unsigned int* indices, int indicesSizeInBytes, unsigned int& vao, unsigned int& vbo, unsigned int& ibo)
 {
 	glGenVertexArrays(1, &vao);
