@@ -19,4 +19,5 @@ private:
 	Triangle* triangle;
 	Square* square;
 	Sprite* sprite;
+	Sprite* sprite2;
 };
