@@ -27,6 +27,12 @@ void Game::Update()
         std::cout << "Apretando Space" << std::endl;
     }
 
+    if (input->isMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    {
+        std::cout << "Boton left" << std::endl;
+        std::cout << "X:" << input->getMousePos().x << "Y:" << input->getMousePos().y << std::endl;
+    }
+
     Vector3 rotation = square->getRot();
     rotation.z += 0.1f;
     square->setRot(rotation);
