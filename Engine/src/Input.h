@@ -2,7 +2,7 @@
 #include <vector>
 #include "Export.h"
 
-enum  Key
+enum Key
 {
     KEY_SPACE = 32,
     KEY_APOSTROPHE = 39,
@@ -138,7 +138,6 @@ public:
 	bool isKeyPressed(Key key);
 	bool isKeyUp(Key key);
     void SetWindow(GLFWwindow* window);
-	
 
 private:
 	GLFWwindow* window;
