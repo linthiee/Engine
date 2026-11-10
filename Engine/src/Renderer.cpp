@@ -31,6 +31,13 @@ void Renderer::Draw(int indices)
 	glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr);
 }
 
+void Renderer::UpdateVBO(unsigned int vbo, const float* positions, int posSizeInBytes)
+{
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, posSizeInBytes, positions);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
 void Renderer::InitBuffers(const float* positions, int posSizeInBytes, const unsigned int* indices, int indicesSizeInBytes, unsigned int& vao, unsigned int& vbo, unsigned int& ibo)
 {
 	glGenVertexArrays(1, &vao);
@@ -38,14 +45,14 @@ void Renderer::InitBuffers(const float* positions, int posSizeInBytes, const uns
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, posSizeInBytes, positions, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, posSizeInBytes, positions, GL_DYNAMIC_DRAW);
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)0);
 
 	glGenBuffers(1, &ibo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesSizeInBytes, indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesSizeInBytes, indices, GL_DYNAMIC_DRAW);
 
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)(2 * sizeof(float)));

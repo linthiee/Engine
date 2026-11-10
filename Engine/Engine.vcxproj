@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\BaseGame.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\Entity2D.cpp" />
+    <ClCompile Include="src\Frame.cpp" />
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Material.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
@@ -30,16 +32,19 @@
     <ClCompile Include="src\Square.cpp" />
     <ClCompile Include="src\stb_image.cpp" />
     <ClCompile Include="src\TextureImporter.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Triangle.cpp" />
+    <ClCompile Include="src\Vector2.cpp" />
+    <ClCompile Include="src\Vector3.cpp" />
     <ClCompile Include="src\Window.cpp" />
-    <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\BaseGame.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\Entity2D.h" />
     <ClInclude Include="src\Export.h" />
+    <ClInclude Include="src\Frame.h" />
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Material.h" />
     <ClInclude Include="src\Renderer.h" />
@@ -48,6 +53,7 @@
     <ClInclude Include="src\Square.h" />
     <ClInclude Include="src\stb_image.h" />
     <ClInclude Include="src\TextureImporter.h" />
+    <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\Triangle.h" />
     <ClInclude Include="src\Vector2.h" />
     <ClInclude Include="src\Vector3.h" />

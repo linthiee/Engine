@@ -3,6 +3,7 @@
 Sprite::Sprite(Renderer* renderer, const char* texturePath) : Entity2D(renderer)
 {
 	importer = new TextureImporter(texturePath);
+	animation = nullptr;
 
 	positions =
 	{
@@ -25,6 +26,47 @@ Sprite::Sprite(Renderer* renderer, const char* texturePath) : Entity2D(renderer)
 Sprite::~Sprite()
 {
 	Destroy();
+}
+
+void Sprite::SetAnimation(Animation* animation)
+{
+	if (this->animation == animation)
+		return;
+
+	this->animation = animation;
+	if (animation && !animation->GetFrames().empty())
+		SetUVs(animation->GetFrames()[0]);
+}
+
+void Sprite::UpdateAnimation(Timer* timer)
+{
+	if (!animation || animation->GetFrames().empty())
+		return;
+
+	animation->Update(*timer);
+	int currentFrame = animation->CurrentFrame();
+	SetUVs(animation->GetFrames()[currentFrame]);
+}
+
+void Sprite::SetUVs(Frame& frame)
+{
+	//abajo izquierda
+	positions[5] = frame.uvCoords[0].u;
+	positions[6] = frame.uvCoords[0].v;
+
+	//abajo derecha
+	positions[12] = frame.uvCoords[1].u;
+	positions[13] = frame.uvCoords[1].v;
+
+	//arriba derecha
+	positions[19] = frame.uvCoords[3].u;
+	positions[20] = frame.uvCoords[3].v;
+
+	//arriba izquierda
+	positions[26] = frame.uvCoords[2].u;
+	positions[27] = frame.uvCoords[2].v;
+
+	renderer->UpdateVBO(vbo, positions.data(), positions.size() * sizeof(float));
 }
 
 void Sprite::InitBuffer()

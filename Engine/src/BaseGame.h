@@ -5,6 +5,7 @@
 #include "Renderer.h"
 #include "Material.h"
 #include "Input.h"
+#include "Timer.h"
 
 class BASEGAME_API BaseGame
 {
@@ -12,6 +13,7 @@ protected:
 	Window* window;
 	Renderer* render;
 	Input* input;
+	Timer* timer;
 
 public:
 	BaseGame();

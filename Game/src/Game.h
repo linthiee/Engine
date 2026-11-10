@@ -20,4 +20,12 @@ private:
 	Square* square;
 	Sprite* sprite;
 	Sprite* sprite2;
+
+	Animation* cowIdleAnim;
+
+	Animation* idleAnim;
+	Animation* walkDownAnim;
+	Animation* walkUpAnim;
+	Animation* walkLeftAnim;
+	Animation* walkRightAnim;
 };
