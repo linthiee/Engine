@@ -1,8 +1,11 @@
 #include "Game.h"
+#include <iostream>
 
 void Game::Init()
 {
 	Material* shader = new Material("res/Shaders/BasicShader.vertex", "res/Shaders/BasicShader.fragment");
+
+	std::cout << "Loading image textures..." << std::endl;
 	Material* texShader = new Material("res/Textures/TextureShader.vertex", "res/Textures/TextureShader.fragment");
 
 	sprite = new Sprite(render, "res/Textures/Triangle.png");
@@ -21,24 +24,36 @@ void Game::Update()
 	translation.y += 0.01f;
 	triangle->setPos(translation);
 
-	Vector2 inputMove = sprite->getPos();
+	float speed = 0.1f;
+	Vector2 direction(0.0f, 0.0f);
+
 	if (input->isKeyPressed(KEY_W))
 	{
-		inputMove.y += 0.1f;
+		direction.y += 1.0f;
 	}
 	if (input->isKeyPressed(KEY_S))
 	{
-		inputMove.y -= 0.1f;
+		direction.y -= 1.0f;
 	}
 	if (input->isKeyPressed(KEY_D))
 	{
-		inputMove.x += 0.1f;
+		direction.x += 1.0f;
 	}
 	if (input->isKeyPressed(KEY_A))
 	{
-		inputMove.x -= 0.1f;
+		direction.x -= 1.0f;
 	}
-	sprite->setPos(inputMove);
+
+	if (direction.x != 0.0f || direction.y != 0.0f)
+	{
+		direction = Normalize(direction);
+
+		Vector2 currentPos = sprite->getPos();
+		currentPos.x += direction.x * speed;
+		currentPos.y += direction.y * speed;
+
+		sprite->setPos(currentPos);
+	}
 
 	Vector3 rotation = square->getRot();
 	rotation.z += 0.1f;

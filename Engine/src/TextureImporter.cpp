@@ -1,6 +1,7 @@
 #include "GL/glew.h"
 #include "TextureImporter.h"
 #include "stb_image.h"
+#include <iostream>
 
 TextureImporter::TextureImporter()
 {
@@ -52,6 +53,8 @@ void TextureImporter::ImportTexture(const char* filepath)
 
 	if (localBuffer)
 		stbi_image_free(localBuffer);
+
+	std::cout << "Succes!" << std::endl;
 }
 
 void TextureImporter::Bind(unsigned int slot) const

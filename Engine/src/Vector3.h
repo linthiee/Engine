@@ -20,3 +20,4 @@ struct Vector3
 	}
 };
 
+Vector3 Normalize(Vector3 vector);

@@ -35,6 +35,8 @@ unsigned int Material::CompileShader(unsigned int type, const std::string& sourc
 		std::cout << "ERROR::SHADER::" << typeName << "::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
+	std::cout << "Success!" << std::endl;
+
 	return id;
 }
 
@@ -59,12 +61,16 @@ Material::~Material()
 
 void Material::LoadVertexShader(const char* vertexPath)
 {
+	std::cout << "Loading vertex shader..." << std::endl;
+
 	std::string vertexSource = ReadFile(vertexPath);
 	vertexShader = CompileShader(GL_VERTEX_SHADER, vertexSource);
 }
 
 void Material::LoadFragmentShader(const char* fragmentPath)
 {
+	std::cout << "Loading fragment shader..." << std::endl;
+
 	std::string fragmentSource = ReadFile(fragmentPath);
 	fragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragmentSource);
 }

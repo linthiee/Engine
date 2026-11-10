@@ -1,6 +1,7 @@
 #pragma once
+#include "Export.h"
 
-struct Vector2
+struct  Vector2
 {
 	float x;
 	float y;
@@ -16,3 +17,5 @@ struct Vector2
 		this->y = y;
 	}
 };
+
+Vector2 BASEGAME_API Normalize(Vector2 vector);
