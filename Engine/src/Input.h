@@ -128,8 +128,20 @@ enum Key
     KEY_MENU = 348
 };
 
-struct GLFWwindow;
+enum Mouse_Buttons 
+{
+    MOUSE_BUTTON_LEFT = 0,
+    MOUSE_BUTTON_RIGHT = 1,
+    MOUSE_BUTTON_MIDDLE = 2,
+    MOUSE_BUTTON_4 = 3,
+    MOUSE_BUTTON_5 = 4,
+    MOUSE_BUTTON_6 = 5,
+    MOUSE_BUTTON_7 = 6,
+    MOUSE_BUTTON_8 = 7,
+};
+
 class Window;
+struct Vector2;
 
 class BASEGAME_API Input
 {
@@ -138,7 +150,8 @@ public:
 	~Input();
 	bool isKeyPressed(Key key);
 	bool isKeyUp(Key key);
-	
+    bool isMouseButtonPressed(Mouse_Buttons mouseButton);
+    Vector2 getMousePos();
 
 private:
 	Window* window;

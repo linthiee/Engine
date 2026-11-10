@@ -8,14 +8,14 @@ void Game::Init()
 	std::cout << "Loading image textures..." << std::endl;
 	Material* texShader = new Material("res/Textures/TextureShader.vertex", "res/Textures/TextureShader.fragment");
 
-	sprite = new Sprite(render, "res/Textures/Triangle.png");
-	sprite->setMaterial(texShader);
+    sprite = new Sprite(render, "res/Textures/Triangle.png");
+    sprite->setMaterial(texShader);
 
-	triangle = new Triangle(render);
-	square = new Square(render);
+    triangle = new Triangle(render);
+    square = new Square(render);
 
-	triangle->setMaterial(shader);
-	square->setMaterial(shader);
+    triangle->setMaterial(shader);
+    square->setMaterial(shader);
 }
 
 void Game::Update()
@@ -55,31 +55,31 @@ void Game::Update()
 		sprite->setPos(currentPos);
 	}
 
-	Vector3 rotation = square->getRot();
-	rotation.z += 0.1f;
-	square->setRot(rotation);
+    Vector3 rotation = square->getRot();
+    rotation.z += 0.1f;
+    square->setRot(rotation);
 
-	triangle->Draw();
-	square->Draw();
-	sprite->Draw();
+    triangle->Draw();
+    square->Draw();
+    sprite->Draw();
 }
 
 void Game::Deinit()
 {
-	triangle->Destroy();
-	square->Destroy();
+    triangle->Destroy();
+    square->Destroy();
 }
 
 Game::Game()
 {
 	triangle = nullptr;
-	square = nullptr;
-	sprite = nullptr;
+    square = nullptr;
+    sprite = nullptr;
 }
 
 Game::~Game()
 {
-	triangle->Destroy();
-	square->Destroy();
-	sprite->Destroy();
+    triangle->Destroy();
+    square->Destroy();
+    sprite->Destroy();
 }
