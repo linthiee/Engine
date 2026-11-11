@@ -16,10 +16,16 @@ public:
 
 private:
 
+	void InitAnimations();
+	void HandlePlayerInput();
+	void UpdateEntities();
+	void DrawEntities();
+	void CheckGameBounds(Sprite* player);
+
 	Triangle* triangle;
 	Square* square;
-	Sprite* sprite;
-	Sprite* sprite2;
+	Sprite* cow;
+	Sprite* bunny;
 
 	Animation* cowIdleAnim;
 
