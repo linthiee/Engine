@@ -22,6 +22,8 @@ void Game::Init()
 
 	bunny->setScale(Vector2(bunny->getScale().x * 2.0f, bunny->getScale().y * 2.0f));
 
+	cow->setPos(Vector2(2.0f, 2.0f));
+
 	InitAnimations();
 }
 
@@ -73,6 +75,9 @@ void Game::InitAnimations()
 
 	bunny->SetAnimation(walkDownAnim);
 	cow->SetAnimation(cowIdleAnim);
+
+	bunny->setColliderScale(Vector2(0.15f, 0.15f));
+	cow->setColliderScale(Vector2(0.15f, 0.15f));
 }
 
 void Game::HandlePlayerInput()
@@ -86,7 +91,7 @@ void Game::HandlePlayerInput()
 	translation.y += 0.01f;
 	triangle->setPos(translation);
 
-	float speed = 0.05f;
+	float speed = 0.03f;
 	Vector2 direction(0.0f, 0.0f);
 
 	if (input->isKeyPressed(KEY_W))
@@ -114,12 +119,19 @@ void Game::HandlePlayerInput()
 	{
 		direction = Normalize(direction);
 
-		Vector2 currentPos = bunny->getPos();
-		currentPos.x += direction.x * speed;
-		currentPos.y += direction.y * speed;
+		Vector2 previousPos = bunny->getPos();
+		Vector2 newPos = previousPos;
 
-		bunny->setPos(currentPos);
+		newPos.x += direction.x * speed;
+		newPos.y += direction.y * speed;
+
+		bunny->setPos(newPos);
 		CheckGameBounds(bunny);
+
+		if (collisionManager->CheckAABB(bunny, cow))
+		{
+			bunny->setPos(previousPos); 
+		}
 	}
 	else
 		bunny->SetAnimation(idleAnim);

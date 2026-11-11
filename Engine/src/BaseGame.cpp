@@ -7,6 +7,7 @@ BaseGame::BaseGame()
 	render = new Renderer();
 	input = new Input(window);
 	timer = new Timer();
+	collisionManager = new CollisionManager();
 }
 
 BaseGame::~BaseGame()
@@ -15,6 +16,7 @@ BaseGame::~BaseGame()
 	delete render;
 	delete window;
 	delete timer;
+	delete collisionManager;
 }
 
 void BaseGame::EngineInit(const int width, const int height, const char* name)

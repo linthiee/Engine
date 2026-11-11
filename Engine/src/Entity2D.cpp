@@ -38,3 +38,27 @@ Material* Entity2D::getMaterial() const
 {
 	return material;
 }
+
+void Entity2D::setColliderScale(Vector2 colliderScale)
+{
+	this->colliderScale = colliderScale;
+}
+
+Vector2 Entity2D::getColliderScale() const
+{
+	 return colliderScale; 
+}
+
+AABB Entity2D::getAABB() const
+{
+	float halfWidth = scale.x * colliderScale.x;
+	float halfHeight = scale.y * colliderScale.y;
+
+	AABB box;
+	box.minX = pos.x - halfWidth;
+	box.maxX = pos.x + halfWidth;
+	box.minY = pos.y - halfHeight;
+	box.maxY = pos.y + halfHeight;
+
+	return box;
+}

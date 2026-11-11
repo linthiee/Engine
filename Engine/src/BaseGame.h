@@ -6,6 +6,7 @@
 #include "Material.h"
 #include "Input.h"
 #include "Timer.h"
+#include "CollisionManager.h"
 
 class BASEGAME_API BaseGame
 {
@@ -14,6 +15,7 @@ protected:
 	Renderer* render;
 	Input* input;
 	Timer* timer;
+	CollisionManager* collisionManager;
 
 public:
 	BaseGame();
